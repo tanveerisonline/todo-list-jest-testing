@@ -130,6 +130,10 @@ Github Pages.
 
 - GitHub: [@tanveerisonline](https://github.com/tanveerisonline)
 
+👤 **Author2**
+
+- GitHub: [@george827](https://github.com/george827)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
