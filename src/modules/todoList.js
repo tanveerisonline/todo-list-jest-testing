@@ -1,9 +1,9 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
-import deleteAnItem from './deleteTodo.js';
-import addAnItem from './addTodo.js';
-import updTodo from './updateTodo.js';
-import checkTodo from './checkTodo.js';
-import clearAllCompleted from './clearAllCompleted.js';
+import deleteAnItem from './deleteTodoListItems.js';
+import addAnItem from './addTodoList.js';
+import updTodo from './updateTodoList.js';
+import checkTodo from './checkTodoList.js';
+import clearAllCompleted from './clearAllCompletedTodos.js';
 
 const addInput = document.querySelector('.todo-input');
 let todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
@@ -18,8 +18,8 @@ const render = () => {
       const check = todo.completed === true ? 'checked' : '';
       todoDiv.innerHTML += `
         <div class="todos">
-          <input type="checkbox" class="todo-check " value="${todo.completed}" ${check}>
-          <input type="text" class="todo-desc clear-border ${check}" value="${todo.desc}">
+          <input type="checkbox" class="todo-check" value="${todo.completed}" ${check}>
+          <input type="text" class="todo-desc clear-border" value="${todo.desc}">
           <i class="fa-solid fa-bars"></i>
           <button type="button" class="trash-btn"><i class="fa fa-trash"></i></button>
         </div>
@@ -29,6 +29,7 @@ const render = () => {
   for (let i = 0; i < todoDiv.querySelectorAll('.todos').length; i += 1) {
     //  update checked status
     const todoRow = todoDiv.querySelectorAll('.todos')[i];
+    // eslint-disable-next-line no-loop-func
     todoRow.querySelector('.todo-check').addEventListener('click', () => {
       const result = checkTodo(i, todos);
       localStorage.setItem('todos', JSON.stringify(result));
@@ -44,6 +45,7 @@ const render = () => {
       todoRow.querySelector('.fa-bars').style.display = 'none';
     });
 
+    // eslint-disable-next-line no-loop-func
     todoRow.querySelector('.trash-btn').addEventListener('click', () => {
       const updTodo = deleteAnItem(i, todos);
       for (let a = i; a < updTodo.length; a += 1) {
@@ -65,6 +67,7 @@ const render = () => {
       }
     });
     //  update description
+    // eslint-disable-next-line no-loop-func
     todoRow.querySelector('.todo-desc').addEventListener('change', (e) => {
       const result = updTodo(i, todos, e.target.value);
       localStorage.setItem('todos', JSON.stringify(result));
@@ -77,7 +80,7 @@ addInput.addEventListener('keypress', (e) => {
       const todoVal = addInput.value;
       addInput.value = '';
       index += 1;
-      const updTodo = addAnItem({ index: index, desc: todoVal, completed: false }, todos);
+      const updTodo = addAnItem({ index, desc: todoVal, completed: false }, todos);
       localStorage.setItem('todos', JSON.stringify(updTodo));
       render();
     }

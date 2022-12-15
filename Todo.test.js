@@ -2,8 +2,8 @@
 * @jest-environment jsdom
 */
 
-const deleteAnItem = require('./src/modules/deleteTodoItems.js');
-const addTodo = require('./src/modules/addTodo.js');
+const deleteAnItem = require('./src/modules/deleteTodoListItems.js');
+const addTodo = require('./src/modules/addTodoList.js');
 
 describe('todo functions ADD & DELETE', () => {
   test('add a todo', () => {
