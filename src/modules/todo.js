@@ -1,6 +1,9 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
 import deleteAnItem from './deleteTodo.js';
 import addAnItem from './addTodo.js';
+import updTodo from './updateTodo.js';
+import checkTodo from './checkTodo.js';
+import clearAllCompleted from './clearAllCompleted.js';
 
 const addInput = document.querySelector('.todo-input');
 let todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
@@ -24,7 +27,15 @@ const render = () => {
     });
   }
   for (let i = 0; i < todoDiv.querySelectorAll('.todos').length; i += 1) {
-    //  change color 
+    //  update checked status
+    const todoRow = todoDiv.querySelectorAll('.todos')[i];
+    todoRow.querySelector('.todo-check').addEventListener('click', () => {
+      const result = checkTodo(i, todos);
+      localStorage.setItem('todos', JSON.stringify(result));
+      render();
+    });
+
+    //  change color and icon on input focus
 
     todoRow.addEventListener('focusin', () => {
       todoRow.classList.add('active');
@@ -53,6 +64,11 @@ const render = () => {
         todoRow.querySelector('.trash-btn').style.display = 'none';
       }
     });
+    //  update description
+    todoRow.querySelector('.todo-desc').addEventListener('change', (e) => {
+      const result = updTodo(i, todos, e.target.value);
+      localStorage.setItem('todos', JSON.stringify(result));
+    });
   }
 };
 addInput.addEventListener('keypress', (e) => {
@@ -66,6 +82,14 @@ addInput.addEventListener('keypress', (e) => {
       render();
     }
   }
+});
+
+clearBtn.addEventListener('click', () => {
+  /* eslint-disable prefer-const */
+  todos = clearAllCompleted(todos);
+  index = todos.length;
+  localStorage.setItem('todos', JSON.stringify(todos));
+  render();
 });
 
 window.onload = render();
