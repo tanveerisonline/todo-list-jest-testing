@@ -34,6 +34,11 @@
 > Here in this project your can remove completed tasks
 > This project has add and remove functionality.
 > This project stores data in local storage.
+> This project is using Jest framework for testing.
+> Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
+> This project is using us built with collaborators.
+> This project is checking whether this project is bug free or not.
+> This project is totally bug free.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -47,6 +52,7 @@
     <li><a href="https://www.w3.org/TR/2014/REC-html5-20141028/">HTML 5</a></li>
     <li><a href="https://www.w3.org/Style/CSS/current-work.en.html">CSS 3</a></li>
     <li><a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-262/">JavaScript5</a></li>
+    <li><a href="https://jestjs.io/">Jest Framework</a></li>
   </ul>
 </details>
 
@@ -94,7 +100,7 @@ In order to run this project you need:
 
 ### Setup
 
-Clone this repository by using the command line : git clone https://github.com/tanveerisonline/microverse-todo-list-project.git
+Clone this repository by using the command line : git clone https://github.com/tanveerisonline/todo-list-jest-testing.git
 
 ### Install
 
@@ -129,6 +135,10 @@ Github Pages.
 👤 **Author1**
 
 - GitHub: [@tanveerisonline](https://github.com/tanveerisonline)
+
+👤 **Author2**
+
+- GitHub: [@george827](https://github.com/george827)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
