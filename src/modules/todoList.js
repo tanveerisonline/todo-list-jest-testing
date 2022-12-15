@@ -1,12 +1,12 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
-import deleteAnItem from './deleteTodo.js';
-import addAnItem from './addTodo.js';
+import deleteAnItem from './deleteTodoListItems.js';
+import addAnItem from './addTodoList.js';
 
 const addInput = document.querySelector('.todo-input');
-let todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
+const todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
 let index = todos.length;
 const todoDiv = document.querySelector('.todo-list');
-const clearBtn = document.querySelector('.clear-button');
+// const clearBtn = document.querySelector('.clear-button');
 
 const render = () => {
   if (todos !== null) {
@@ -24,15 +24,7 @@ const render = () => {
     });
   }
   for (let i = 0; i < todoDiv.querySelectorAll('.todos').length; i += 1) {
-    //  change color 
-
-    todoRow.addEventListener('focusin', () => {
-      todoRow.classList.add('active');
-      todoRow.querySelector('.todo-desc').classList.add('active');
-      todoRow.querySelector('.trash-btn').style.display = 'block';
-      todoRow.querySelector('.fa-bars').style.display = 'none';
-    });
-
+    // eslint-disable-next-line no-loop-func, no-undef
     todoRow.querySelector('.trash-btn').addEventListener('click', () => {
       const updTodo = deleteAnItem(i, todos);
       for (let a = i; a < updTodo.length; a += 1) {
@@ -43,13 +35,19 @@ const render = () => {
       render();
     });
 
+    // eslint-disable-next-line no-loop-func, no-undef
     todoRow.addEventListener('focusout', (e) => {
+      // eslint-disable-next-line no-undef
       const parent = todoRow;
       const leavingParent = !parent.contains(e.relatedTarget);
       if (leavingParent) {
+        // eslint-disable-next-line no-undef
         todoRow.classList.remove('active');
+        // eslint-disable-next-line no-undef
         todoRow.querySelector('.todo-desc').classList.remove('active');
+        // eslint-disable-next-line no-undef
         todoRow.querySelector('.fa-bars').style.display = 'flex';
+        // eslint-disable-next-line no-undef
         todoRow.querySelector('.trash-btn').style.display = 'none';
       }
     });
@@ -61,7 +59,7 @@ addInput.addEventListener('keypress', (e) => {
       const todoVal = addInput.value;
       addInput.value = '';
       index += 1;
-      const updTodo = addAnItem({ index: index, desc: todoVal, completed: false }, todos);
+      const updTodo = addAnItem({ index, desc: todoVal, completed: false }, todos);
       localStorage.setItem('todos', JSON.stringify(updTodo));
       render();
     }
